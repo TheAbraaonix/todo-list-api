@@ -1,4 +1,4 @@
-package com.example.todolistapi.service;
+package com.example.todolistapi.todolistapi.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.example.todolistapi.entity.Todo;
-import com.example.todolistapi.repository.TodoRepository;
+import com.example.todolistapi.todolistapi.entity.Todo;
+import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
 @Service
 public class TodoService {

@@ -1,4 +1,4 @@
-package com.example.todolistapi.entity;
+package com.example.todolistapi.todolistapi.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
