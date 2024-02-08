@@ -14,17 +14,17 @@ public class Todo {
     private long id;
     private String nome;
     private String descricao;
-    private boolean isRealizada;
+    private boolean realizada;
     private int prioridade;
 
     public Todo() {
     }
 
-    public Todo(long id, String nome, String descricao, boolean isRealizada, int prioridade) {
+    public Todo(long id, String nome, String descricao, boolean realizada, int prioridade) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.isRealizada = isRealizada;
+        this.realizada = realizada;
         this.prioridade = prioridade;
     }
 
@@ -52,12 +52,12 @@ public class Todo {
         this.descricao = descricao;
     }
 
-    public boolean isRealizada() {
-        return isRealizada;
+    public boolean getRealizada() {
+        return realizada;
     }
 
     public void setRealizada(boolean isRealizada) {
-        this.isRealizada = isRealizada;
+        this.realizada = isRealizada;
     }
 
     public int getPrioridade() {
