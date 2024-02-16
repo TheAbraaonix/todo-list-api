@@ -2,6 +2,7 @@ package com.example.todolistapi.todolistapi.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,22 +26,22 @@ public class TodoController {
     }
 
     @PostMapping
-    public List<Todo> create(@RequestBody TodoDTO todo) {
-        return todoService.create(todo);
+    public ResponseEntity<List<Todo>> create(@RequestBody TodoDTO todo) {
+        return ResponseEntity.ok().body(todoService.create(todo));
     }
 
     @GetMapping
-    public List<Todo> list() {
-        return todoService.list();
+    public ResponseEntity<List<Todo>> list() {
+        return ResponseEntity.ok().body(todoService.list());
     }
 
     @PutMapping("{id}")
-    public List<Todo> update(@PathVariable long id, @RequestBody TodoDTO todo) {
-        return todoService.update(id, todo);
+    public ResponseEntity<List<Todo>> update(@PathVariable long id, @RequestBody TodoDTO todo) {
+        return ResponseEntity.ok().body(todoService.update(id, todo));
     }
 
     @DeleteMapping("{id}")
-    public List<Todo> delete(@PathVariable("id") long id) {
-        return todoService.delete(id);
+    public ResponseEntity<List<Todo>> delete(@PathVariable("id") long id) {
+        return ResponseEntity.ok().body(todoService.delete(id));
     }
 }
