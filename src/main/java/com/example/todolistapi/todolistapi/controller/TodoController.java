@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.service.TodoService;
 
@@ -24,7 +25,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public List<Todo> create(@RequestBody Todo todo) {
+    public List<Todo> create(@RequestBody TodoDTO todo) {
         return todoService.create(todo);
     }
 

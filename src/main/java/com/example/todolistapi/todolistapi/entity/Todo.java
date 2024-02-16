@@ -1,5 +1,7 @@
 package com.example.todolistapi.todolistapi.entity;
 
+import com.example.todolistapi.todolistapi.dto.TodoDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,13 @@ public class Todo {
         this.descricao = descricao;
         this.realizada = realizada;
         this.prioridade = prioridade;
+    }
+
+    public Todo(TodoDTO dto) {
+        this.nome = dto.nome();
+        this.descricao = dto.descricao();
+        this.realizada = dto.realizada();
+        this.prioridade = dto.prioridade();
     }
 
     public long getId() {

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
@@ -17,8 +18,9 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> create(Todo todo) {
-        todoRepository.save(todo);
+    public List<Todo> create(TodoDTO todo) {
+        Todo newTodo = new Todo(todo);
+        todoRepository.save(newTodo);
         return list();
     }
 
