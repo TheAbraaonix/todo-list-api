@@ -32,7 +32,6 @@ public class TodoService {
 
     public List<Todo> update(long id, TodoDTO todo) {
         Todo updatedTodo = new Todo(todo);
-
         updatedTodo.setId(id);
         todoRepository.save(updatedTodo);
         return list();
