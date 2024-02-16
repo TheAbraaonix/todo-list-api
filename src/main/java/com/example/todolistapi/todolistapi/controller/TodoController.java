@@ -35,7 +35,7 @@ public class TodoController {
     }
 
     @PutMapping("{id}")
-    public List<Todo> update(@PathVariable long id, @RequestBody Todo todo) {
+    public List<Todo> update(@PathVariable long id, @RequestBody TodoDTO todo) {
         return todoService.update(id, todo);
     }
 
