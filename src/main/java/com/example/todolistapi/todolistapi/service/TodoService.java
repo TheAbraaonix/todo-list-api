@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
+import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
 @Service
@@ -20,6 +21,10 @@ public class TodoService {
 
     public List<Todo> create(TodoDTO todo) {
         Todo newTodo = new Todo(todo);
+        if (newTodo.getNome().length() == 0) {
+            throw new BlankNameException();
+        }
+
         todoRepository.save(newTodo);
         return list();
     }
