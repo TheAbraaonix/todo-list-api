@@ -16,6 +16,8 @@ import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.service.TodoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
@@ -26,7 +28,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<List<Todo>> create(@RequestBody TodoDTO todo) {
+    public ResponseEntity<List<Todo>> create(@Valid @RequestBody TodoDTO todo) {
         return ResponseEntity.ok().body(todoService.create(todo));
     }
 
@@ -36,7 +38,7 @@ public class TodoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<List<Todo>> update(@PathVariable long id, @RequestBody TodoDTO todo) {
+    public ResponseEntity<List<Todo>> update(@PathVariable long id, @Valid @RequestBody TodoDTO todo) {
         return ResponseEntity.ok().body(todoService.update(id, todo));
     }
 
