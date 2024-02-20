@@ -114,6 +114,38 @@ Exemplo de resposta:
     }
 ]
 ```
+
+### Listar tarefa específica:
+- **Endpoint:** `/todos/{id}`
+- **Método HTTP:** GET
+- **Descrição**: Lista uma tarefa específica.
+
+Parâmetros da consulta:
+- `id` (obrigatório)
+
+Corpo da requisição:
+```
+{}
+```
+
+Exemplo de requisição: 
+```
+curl --location 'http://localhost:8080/todos/1'
+```
+
+Exemplo de resposta:
+```
+[
+    {
+        "id": 1,
+        "nome": "Tarefa 1",
+        "descricao": "Tarefa 1",
+        "realizada": false,
+        "prioridade": 1
+    }
+]
+```
+
 ### Editar tarefa:
 - **Endpoint:** `/todos/{id}`
 - **Método HTTP:** PUT
