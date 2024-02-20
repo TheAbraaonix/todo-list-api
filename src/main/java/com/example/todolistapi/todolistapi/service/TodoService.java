@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
+import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
 import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
@@ -21,8 +22,13 @@ public class TodoService {
 
     public List<Todo> create(TodoDTO todo) {
         Todo newTodo = new Todo(todo);
+
         if (newTodo.getNome().length() == 0) {
             throw new BlankNameException();
+        }
+
+        if (newTodo.getDescricao().length() == 0) {
+            throw new BlankDescriptionException();
         }
 
         todoRepository.save(newTodo);
@@ -37,6 +43,15 @@ public class TodoService {
 
     public List<Todo> update(long id, TodoDTO todo) {
         Todo updatedTodo = new Todo(todo);
+
+        if (updatedTodo.getNome().length() == 0) {
+            throw new BlankNameException();
+        }
+
+        if (updatedTodo.getDescricao().length() == 0) {
+            throw new BlankDescriptionException();
+        }
+
         updatedTodo.setId(id);
         todoRepository.save(updatedTodo);
         return list();
