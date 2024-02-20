@@ -1,6 +1,7 @@
 package com.example.todolistapi.todolistapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -43,7 +44,8 @@ public class TodoService {
     }
 
     public List<Todo> update(long id, TodoDTO todo) {
-        Todo updatedTodo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
+        todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
+        Todo updatedTodo = new Todo(todo);
 
         if (updatedTodo.getNome().length() == 0) {
             throw new BlankNameException();
