@@ -1,6 +1,7 @@
 package com.example.todolistapi.todolistapi.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,11 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<Todo>> list() {
         return ResponseEntity.ok().body(todoService.list());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Optional<Todo>> listById(@PathVariable long id) {
+        return ResponseEntity.ok().body(todoService.listById(id));
     }
 
     @PutMapping("{id}")

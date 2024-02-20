@@ -43,6 +43,16 @@ public class TodoService {
         return todoRepository.findAll(sort);
     }
 
+    public Optional<Todo> listById(long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+
+        if (todo.isEmpty()) {
+            throw new TodoNotFoundException();
+        }
+
+        return todo;
+    }
+
     public List<Todo> update(long id, TodoDTO todo) {
         todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
         Todo updatedTodo = new Todo(todo);
