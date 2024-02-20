@@ -8,6 +8,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
 import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
+import com.example.todolistapi.todolistapi.exceptions.TodoNotFoundException;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -20,6 +21,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BlankDescriptionException.class)
     private ResponseEntity<RestErrorMessage> BlankDescriptionHandler(BlankDescriptionException exception) {
+        RestErrorMessage response = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(TodoNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> NotFoundTodoHandler(TodoNotFoundException exception) {
         RestErrorMessage response = new RestErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }

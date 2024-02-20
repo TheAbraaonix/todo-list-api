@@ -10,6 +10,7 @@ import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
 import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
+import com.example.todolistapi.todolistapi.exceptions.TodoNotFoundException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
 @Service
@@ -42,7 +43,7 @@ public class TodoService {
     }
 
     public List<Todo> update(long id, TodoDTO todo) {
-        Todo updatedTodo = new Todo(todo);
+        Todo updatedTodo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
 
         if (updatedTodo.getNome().length() == 0) {
             throw new BlankNameException();
@@ -58,7 +59,8 @@ public class TodoService {
     }
 
     public List<Todo> delete(long id) {
-        todoRepository.deleteById(id);
+        Todo deleteTodo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
+        todoRepository.delete(deleteTodo);
         return list();
     }
 }
