@@ -12,6 +12,8 @@ API REST para gerenciar tarefas (CRUD).
 - Spring Data JPA
 - SpringDoc OpenAPI 3
 - H2 Database
+- JUnit 5
+- Mockito
 
 ## Práticas adotadas
 
