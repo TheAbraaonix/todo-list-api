@@ -7,13 +7,13 @@ API REST para gerenciar tarefas (CRUD).
 
 ## Tecnologias
  
+- Java 17
 - Spring Boot
 - Spring MVC
 - Spring Data JPA
 - SpringDoc OpenAPI 3
 - H2 Database
-- JUnit 5
-- Mockito
+- JUnit 5 e Mockito
 
 ## Práticas adotadas
 
@@ -23,6 +23,7 @@ API REST para gerenciar tarefas (CRUD).
 - Injeção de Dependências
 - Tratamento de respostas de erro
 - Geração automática do Swagger com a OpenAPI 3
+- Testes unitários
 
 ## Como Executar
 
