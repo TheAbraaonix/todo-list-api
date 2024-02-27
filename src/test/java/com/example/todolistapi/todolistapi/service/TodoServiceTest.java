@@ -1,6 +1,7 @@
 package com.example.todolistapi.todolistapi.service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
+import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
 import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
@@ -12,10 +13,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class TodoServiceTest {
     @Mock
@@ -47,7 +51,7 @@ class TodoServiceTest {
             todoService.create(todo);
         });
 
-        Assertions.assertEquals("O nome não pode ser vazio.", thrown.getMessage());
+        assertEquals("O nome não pode ser vazio.", thrown.getMessage());
     }
 
     @Test
@@ -58,6 +62,23 @@ class TodoServiceTest {
             todoService.create(todo);
         });
 
-        Assertions.assertEquals("A descrição não pode ser vazia.", thrown.getMessage());
+        assertEquals("A descrição não pode ser vazia.", thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should return all TODOs in DB")
+    void findTodoCase1() {
+        Todo todo1 = new Todo(1L,"Tarefa 1", "Descrição 1", false, 1);
+        Todo todo2 = new Todo(2L,"Tarefa 2", "Descrição 2", false, 2);
+
+        when(todoService.list()).thenReturn(List.of(todo1, todo2));
+
+        List<Todo> result = todoService.list();
+
+        assertEquals(result.size(), 2);
+        assertEquals(result.get(0), todo1);
+        assertEquals(result.get(1), todo2);
+
+        verify(todoRepository, times(1)).findAll((Sort) any());
     }
 }
