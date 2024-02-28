@@ -24,6 +24,7 @@ API REST para gerenciar tarefas (CRUD).
 - Tratamento de respostas de erro
 - Geração automática do Swagger com a OpenAPI 3
 - Testes unitários
+- Testes automatizados
 
 ## Como Executar
 
