@@ -33,6 +33,13 @@ public class Todo {
         this.prioridade = prioridade;
     }
 
+    public Todo(String nome, String descricao, boolean realizada, int prioridade) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.realizada = realizada;
+        this.prioridade = prioridade;
+    }
+
     public Todo(TodoDTO dto) {
         this.nome = dto.nome();
         this.descricao = dto.descricao();
