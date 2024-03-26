@@ -28,7 +28,10 @@ API REST para gerenciar tarefas (CRUD).
 
 ## Como Executar
 
-- Clonar repositório git
+- Clonar repositório git:
+```
+git clone https://github.com/TheAbraaonix/todo-list-api
+```
 - Construir o projeto:
 ```
 $ ./mvnw clean package
@@ -63,17 +66,6 @@ Corpo da requisição:
 }
 ```
 
-Exemplo de requisição: 
-```
-curl --location 'http://localhost:8080/todos' \
---header 'Content-Type: application/json' \
---data '{
-    "nome": "Tarefa 1",
-    "descricao": "Tarefa 1",
-    "realizada": "false",
-    "prioridade": 1
-}'
-```
 
 Exemplo de resposta:
 ```
@@ -101,10 +93,6 @@ Corpo da requisição:
 {}
 ```
 
-Exemplo de requisição: 
-```
-curl --location 'http://localhost:8080/todos'
-```
 
 Exemplo de resposta:
 ```
@@ -132,10 +120,6 @@ Corpo da requisição:
 {}
 ```
 
-Exemplo de requisição: 
-```
-curl --location 'http://localhost:8080/todos/1'
-```
 
 Exemplo de resposta:
 ```
@@ -158,6 +142,7 @@ Exemplo de resposta:
 Parâmetros da consulta:
 - `id` (obrigatório)
 
+
 Corpo da requisição:
 ```
 {
@@ -166,18 +151,6 @@ Corpo da requisição:
     "realizada": "true",
     "prioridade": 2
 }
-```
-
-Exemplo de requisição: 
-```
-curl --location --request PUT 'http://localhost:8080/todos/1' \
---header 'Content-Type: application/json' \
---data '{
-    "nome": "Tarefa 1",
-    "descricao": "Tarefa 1",
-    "realizada": "true",
-    "prioridade": 2
-}'
 ```
 
 Exemplo de resposta:
@@ -205,12 +178,7 @@ Corpo da requisição:
 {}
 ```
 
-Exemplo de requisição: 
-```
-curl --location --request DELETE 'http://localhost:8080/todos/1'
-```
-
 Exemplo de resposta:
 ```
-[]
+
 ```
