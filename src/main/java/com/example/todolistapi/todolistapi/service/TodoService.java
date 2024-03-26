@@ -70,9 +70,8 @@ public class TodoService {
         return list();
     }
 
-    public List<Todo> delete(long id) {
+    public void delete(long id) {
         Todo deleteTodo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
         todoRepository.delete(deleteTodo);
-        return list();
     }
 }
