@@ -14,7 +14,7 @@ import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
 @Service
 public class TodoService {
-    private TodoRepository todoRepository;
+    private final TodoRepository todoRepository;
 
     public TodoService(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
@@ -43,7 +43,7 @@ public class TodoService {
     }
 
     public List<Todo> update(long id, TodoDTO todo) {
-        todoRepository.findById(id).orElseThrow(() -> new RecordNotFoundException());
+        todoRepository.findById(id).orElseThrow(RecordNotFoundException::new);
         Todo updatedTodo = new Todo(todo);
         updatedTodo.setId(id);
         todoRepository.save(updatedTodo);
@@ -51,7 +51,7 @@ public class TodoService {
     }
 
     public void delete(long id) {
-        Todo deleteTodo = todoRepository.findById(id).orElseThrow(() -> new RecordNotFoundException());
+        Todo deleteTodo = todoRepository.findById(id).orElseThrow(RecordNotFoundException::new);
         todoRepository.delete(deleteTodo);
     }
 }
