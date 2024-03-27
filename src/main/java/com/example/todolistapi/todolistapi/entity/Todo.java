@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -20,6 +22,8 @@ public class Todo {
     @NotBlank
     private String descricao;
     private boolean realizada;
+    @Min(1)
+    @Max(3)
     private int prioridade;
 
     public Todo() {
