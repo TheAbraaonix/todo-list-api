@@ -4,6 +4,7 @@ import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.service.TodoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +31,12 @@ public class TodoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Todo>> listById(@PathVariable long id) {
+    public ResponseEntity<Optional<Todo>> listById(@Positive @PathVariable long id) {
         return ResponseEntity.ok().body(todoService.listById(id));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<List<Todo>> update(@PathVariable long id, @Valid @RequestBody TodoDTO todo) {
+    public ResponseEntity<List<Todo>> update(@Positive @PathVariable long id, @Valid @RequestBody TodoDTO todo) {
         return ResponseEntity.ok().body(todoService.update(id, todo));
     }
 

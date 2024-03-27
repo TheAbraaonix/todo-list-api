@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
-import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
-import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
-import com.example.todolistapi.todolistapi.exceptions.TodoNotFoundException;
+import com.example.todolistapi.todolistapi.exceptions.RecordNotFoundException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 
 @Service
@@ -24,15 +22,6 @@ public class TodoService {
 
     public List<Todo> create(TodoDTO todo) {
         Todo newTodo = new Todo(todo);
-
-        if (newTodo.getNome().length() == 0) {
-            throw new BlankNameException();
-        }
-
-        if (newTodo.getDescricao().length() == 0) {
-            throw new BlankDescriptionException();
-        }
-
         todoRepository.save(newTodo);
         return list();
     }
@@ -47,31 +36,22 @@ public class TodoService {
         Optional<Todo> todo = todoRepository.findById(id);
 
         if (todo.isEmpty()) {
-            throw new TodoNotFoundException();
+            throw new RecordNotFoundException();
         }
 
         return todo;
     }
 
     public List<Todo> update(long id, TodoDTO todo) {
-        todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
+        todoRepository.findById(id).orElseThrow(() -> new RecordNotFoundException());
         Todo updatedTodo = new Todo(todo);
-
-        if (updatedTodo.getNome().length() == 0) {
-            throw new BlankNameException();
-        }
-
-        if (updatedTodo.getDescricao().length() == 0) {
-            throw new BlankDescriptionException();
-        }
-
         updatedTodo.setId(id);
         todoRepository.save(updatedTodo);
         return list();
     }
 
     public void delete(long id) {
-        Todo deleteTodo = todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException());
+        Todo deleteTodo = todoRepository.findById(id).orElseThrow(() -> new RecordNotFoundException());
         todoRepository.delete(deleteTodo);
     }
 }

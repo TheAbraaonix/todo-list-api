@@ -2,8 +2,6 @@ package com.example.todolistapi.todolistapi.service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
-import com.example.todolistapi.todolistapi.exceptions.BlankDescriptionException;
-import com.example.todolistapi.todolistapi.exceptions.BlankNameException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
