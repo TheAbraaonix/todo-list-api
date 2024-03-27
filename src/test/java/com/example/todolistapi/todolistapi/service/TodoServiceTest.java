@@ -2,6 +2,7 @@ package com.example.todolistapi.todolistapi.service;
 
 import com.example.todolistapi.todolistapi.dto.TodoDTO;
 import com.example.todolistapi.todolistapi.entity.Todo;
+import com.example.todolistapi.todolistapi.exceptions.RecordNotFoundException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +44,8 @@ class TodoServiceTest {
 
     @Test
     @DisplayName("Should throw exception when TODO name is empty.")
-    void createTodoCase2() throws BlankNameException {
-        Exception thrown = Assertions.assertThrows(BlankNameException.class, () -> {
+    void createTodoCase2() throws RecordNotFoundException {
+        Exception thrown = Assertions.assertThrows(RecordNotFoundException.class, () -> {
             TodoDTO todo = new TodoDTO("", "Descrição 1", false, 1);
             todoService.create(todo);
         });
@@ -54,8 +55,8 @@ class TodoServiceTest {
 
     @Test
     @DisplayName("Should throw exception when TODO description is empty.")
-    void createTodoCase3() throws BlankDescriptionException {
-        Exception thrown = Assertions.assertThrows(BlankDescriptionException.class, () -> {
+    void createTodoCase3() throws RecordNotFoundException {
+        Exception thrown = Assertions.assertThrows(RecordNotFoundException.class, () -> {
             TodoDTO todo = new TodoDTO("Tarefa 1", "", false, 1);
             todoService.create(todo);
         });
