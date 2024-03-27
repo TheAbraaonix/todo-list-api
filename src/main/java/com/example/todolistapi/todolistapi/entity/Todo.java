@@ -1,6 +1,6 @@
 package com.example.todolistapi.todolistapi.entity;
 
-import com.example.todolistapi.todolistapi.dto.TodoDTO;
+import com.example.todolistapi.todolistapi.dto.TodoRequest;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,7 +40,7 @@ public class Todo {
         this.prioridade = prioridade;
     }
 
-    public Todo(TodoDTO dto) {
+    public Todo(TodoRequest dto) {
         this.nome = dto.nome();
         this.descricao = dto.descricao();
         this.realizada = dto.realizada();

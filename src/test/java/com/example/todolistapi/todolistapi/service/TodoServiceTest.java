@@ -1,6 +1,6 @@
 package com.example.todolistapi.todolistapi.service;
 
-import com.example.todolistapi.todolistapi.dto.TodoDTO;
+import com.example.todolistapi.todolistapi.dto.TodoRequest;
 import com.example.todolistapi.todolistapi.entity.Todo;
 import com.example.todolistapi.todolistapi.exceptions.RecordNotFoundException;
 import com.example.todolistapi.todolistapi.repository.TodoRepository;
@@ -36,7 +36,7 @@ class TodoServiceTest {
     @Test
     @DisplayName("Should create TODO successfully when everything is ok.")
     void createTodoCase1() {
-        TodoDTO todo = new TodoDTO("Tarefa 1", "Descrição 1", false, 1);
+        TodoRequest todo = new TodoRequest("Tarefa 1", "Descrição 1", false, 1);
         todoService.create(todo);
 
         verify(todoRepository, times(1)).save(any());
@@ -46,7 +46,7 @@ class TodoServiceTest {
     @DisplayName("Should throw exception when TODO name is empty.")
     void createTodoCase2() throws RecordNotFoundException {
         Exception thrown = Assertions.assertThrows(RecordNotFoundException.class, () -> {
-            TodoDTO todo = new TodoDTO("", "Descrição 1", false, 1);
+            TodoRequest todo = new TodoRequest("", "Descrição 1", false, 1);
             todoService.create(todo);
         });
 
@@ -57,7 +57,7 @@ class TodoServiceTest {
     @DisplayName("Should throw exception when TODO description is empty.")
     void createTodoCase3() throws RecordNotFoundException {
         Exception thrown = Assertions.assertThrows(RecordNotFoundException.class, () -> {
-            TodoDTO todo = new TodoDTO("Tarefa 1", "", false, 1);
+            TodoRequest todo = new TodoRequest("Tarefa 1", "", false, 1);
             todoService.create(todo);
         });
 
