@@ -20,7 +20,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<List<TodoResponse>> create(@Valid @RequestBody TodoRequest todo) {
+    public ResponseEntity<TodoResponse> create(@Valid @RequestBody TodoRequest todo) {
         return ResponseEntity.ok().body(todoService.create(todo));
     }
 
@@ -35,7 +35,7 @@ public class TodoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<List<TodoResponse>> update(@Positive @PathVariable long id, @Valid @RequestBody TodoRequest todo) {
+    public ResponseEntity<TodoResponse> update(@Positive @PathVariable long id, @Valid @RequestBody TodoRequest todo) {
         return ResponseEntity.ok().body(todoService.update(id, todo));
     }
 

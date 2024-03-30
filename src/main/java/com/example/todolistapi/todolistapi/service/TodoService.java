@@ -22,10 +22,10 @@ public class TodoService {
         this.todoMapper = todoMapper;
     }
 
-    public List<TodoResponse> create(TodoRequest todo) {
+    public TodoResponse create(TodoRequest todo) {
         Todo newTodo = new Todo(todo);
         todoRepository.save(newTodo);
-        return list();
+        return todoMapper.toDTO(newTodo);
     }
 
     public List<TodoResponse> list() {
@@ -43,12 +43,12 @@ public class TodoService {
         return todoMapper.toDTO(todo);
     }
 
-    public List<TodoResponse> update(long id, TodoRequest todo) {
+    public TodoResponse update(long id, TodoRequest todo) {
         todoRepository.findById(id).orElseThrow(RecordNotFoundException::new);
         Todo updatedTodo = new Todo(todo);
         updatedTodo.setId(id);
         todoRepository.save(updatedTodo);
-        return list();
+        return todoMapper.toDTO(updatedTodo);
     }
 
     public void delete(long id) {
