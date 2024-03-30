@@ -23,12 +23,10 @@ class TodolistapiApplicationTests {
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody()
-				.jsonPath("$").isArray()
-				.jsonPath("$.length()").isEqualTo(1)
-				.jsonPath("$[0].nome").isEqualTo(todo.getNome())
-				.jsonPath("$[0].descricao").isEqualTo(todo.getDescricao())
-				.jsonPath("$[0].realizada").isEqualTo(todo.getRealizada())
-				.jsonPath("$[0].prioridade").isEqualTo(todo.getPrioridade());
+				.jsonPath("nome").isEqualTo(todo.getNome())
+				.jsonPath("descricao").isEqualTo(todo.getDescricao())
+				.jsonPath("realizada").isEqualTo(todo.getRealizada())
+				.jsonPath("prioridade").isEqualTo(todo.getPrioridade());
 	}
 
 	@Test
